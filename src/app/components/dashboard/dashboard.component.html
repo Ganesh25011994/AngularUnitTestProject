@@ -1,28 +1,128 @@
-<h3>dashboard works!</h3>
-<div class="dashboard-container">
-    <div class="dashboard-container-controls">
-        <button class="btn btn-sm btn-secondary" 
-        >Previous</button>
-        <button class="btn btn-sm btn-secondary"
-        >Next</button>
+<div class="gridcontainer">
+    <div class="grid-item item1" style="z-index: 100;">
+        <div class="drobdowncontainer">
+            <label>Zone List</label>
+            <select name="zoneslist" id="zoneslist" >
+                @for(list of zoneslist;track $index){
+                    <option value="{{list.id}}">{{list.city}}</option>
+                }
+            </select>
+        </div>
+
+        <div class="drobdowncontainer">
+            <label>Branch List</label>
+            <select name="BranchList" id="BranchList" >
+                @for(list of BranchList;track $index){
+                    <option value="{{list.branchId}}" #opt >{{list.Place}}</option>
+                }
+            </select>
+        </div>
+        
+        <div class="drobdowncontainer">
+            <label>Product List</label>
+            <select name="ProductList" id="ProductList" >
+                @for(list of ProductList;track $index){
+                    <option value="{{list.ProductId}}" #opt >{{list.Product}}</option>
+                }
+            </select>
+        </div>
+
+        <div class="drobdowncontainer">
+            <label>Test List</label>
+            <select name="TestList" id="TestList" >
+                @for(list of TestList;track $index){
+                    <option value="{{list.ProductId}}" #opt >{{list.Product}}</option>
+                }
+            </select>
+        </div>
+
+        <div class="datacontainer">
+            <label>From Date:</label>
+            <input type="date"/>
+        </div>
+        <div class="datacontainer">
+            <label>To Date:</label>
+            <input type="date"/>
+        </div>
+    </div>
+    <div class="grid-item item2">
+        
+    </div>
+    <div class="grid-item item3">
+        
+    </div>
+    <div class="grid-item item4">
+        <div style="display: flex; flex-direction: column;">
+            <div class="cardcontainer">
+                <label class="labletext">Zone</label>
+                <label class="valuetext">991</label>
+                <label class="valuetext">Leads</label>
+            </div>
+    
+            <div class="cardcontainer">
+                <label class="labletext">Total Sanction</label>
+                <label class="valuetext">425</label>
+            </div>
+        </div>
+        
+    </div>
+    <div class="grid-item item5">
+        <div class="dashboard-container">
+            <div class="dashboard-container-controls">
+                <button class="btn btn-sm btn-secondary" 
+                >Previous</button>
+                <button class="btn btn-sm btn-secondary"
+                >Next</button>
+        
+            </div>
+        
+            @if( chartData$ | async; as myData ){
+                <google-chart
+        
+                style="width: 50vw;height: 50vh;"
+                [type]="chartType"
+                [data]="myData"
+                [columns]="myColumns"
+                [options]="chartOptions"
+                (select)="onSelectChart($event)"
+                ></google-chart>
+            }@else{
+                <div> No  Data </div>
+            }
+            
+            <div id="container" #container style="width: 75vw;height: 30vh;"></div>
+        </div>
+    </div>
+    <div class="grid-item item6">
+        <div >
+            <google-chart
+                class="pieChartStyle"
+                [type]="chartType2"
+                [data]="pieChartData"
+                [title]="'Top Sales'">
+            </google-chart>
+
+            <label>Top 5 Zones</label>
+            <google-chart
+                class="barChartStyle"
+                [type]="chartType3"
+                [data]="BarChartData3"
+                [title]="'Top 5 Zones'">
+            </google-chart>
+        </div>
+        
+    </div>
+    <div class="grid-item item7">
 
     </div>
+    <div class="grid-item item8">
 
-    @if( chartData$ | async; as myData ){
-        <google-chart
+    </div>
+    <div class="grid-item item9">
 
-        style="width: 75vw;height: 30vh;"
-        [type]="chartType"
-        [data]="myData"
-        [columns]="myColumns"
-        [options]="chartOptions"
-        (select)="onSelectChart($event)"
-        ></google-chart>
-    }@else{
-        <div> No  Data </div>
-    }
+    </div>
     
-    <div id="container" #container style="width: 75vw;height: 30vh;"></div>
-</div>
+<!-- <h3>dashboard works!</h3> -->
+
 
 
